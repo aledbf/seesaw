@@ -21,3 +21,11 @@ proto:
 
 test: all
 	go test ./...
+
+docker-build:
+	docker build -t 'seesaw-dev:master' .
+	mkdir -p ${CURDIR}/build/bin
+	docker run -i -t --rm=true -v ${CURDIR}/build/bin:/go/bin/out seesaw-dev:master
+
+docker image:
+	docker build -t seesaw:master 
